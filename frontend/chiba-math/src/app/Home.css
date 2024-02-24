@@ -1,0 +1,37 @@
+.banner{
+    background-color: #1AB6F9;
+    padding: 20px;  
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 10px;
+    /* border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px; */
+    color: white;
+    /* box-shadow: 10px 10px 10px lightslategray; */
+  }
+
+  .grid{
+    display: flex;
+  }
+
+  .block1{
+    width: 50%;
+
+    margin:10px;
+    margin-top: 15px;
+    padding: 20px;
+    height: 85vh;
+    border-radius: 10px;
+    background-color: #ebedeb;
+  }
+
+  .block2{
+    width: 50%;
+    margin:10px;
+    margin-top: 15px;
+    padding: 20px;
+    height: 85vh;
+    border-radius: 10px;
+    background-color: #ebedeb;
+  }
