@@ -13,7 +13,7 @@ def get_request(gloop):
     data = {} # request data
     header={"token":"yxz25lSItTKzj596L2tIVSjziF6k5HVy9Zs3LSNHeiaK4WtXWJ6D301hzPc7XPBJ"} # Authentication information, use UAT method here
     # gloop = request.args.get("file") 
-    file=[("file",("./SimpleTex_scripts/" + gloop ,open("./SimpleTex_scripts/" + gloop, 'rb')))] # request file, field name is usually file
+    file=[("file",("./SimpleTex_scripts/images/" + gloop ,open("./SimpleTex_scripts/images/" + gloop, 'rb')))] # request file, field name is usually file
     res = requests.post(api_url, files=file, data=data, headers=header) # Use the requests library to upload files
     print(res.status_code)
     print(res.text)

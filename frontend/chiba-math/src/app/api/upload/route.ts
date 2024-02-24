@@ -1,5 +1,6 @@
 import { writeFile } from 'fs/promises'
 import { NextRequest, NextResponse } from 'next/server'
+import got from 'got';
 
 export async function GET(request: NextRequest){
   console.log('gotten');
@@ -21,9 +22,16 @@ export async function POST(request: NextRequest) {
 
   // With the file data in the buffer, you can do whatever you want with it.
   // For this, we'll just write it to the filesystem in a new location
-  const path = `../../files/${file.name}`
+  const path = `../../SimpleTex/SimpleTex_scripts/images/${file.name}`
   await writeFile(path, buffer)
   console.log(`open ${path} to see the uploaded file`)
 
+  const simpletex = await got.get(`http://localhost:5000/get_SimpleTex/${file.name}`);
+
+  console.log(simpletex.body);
+
+  const openaireq = await got.post(`http://localhost:5000/process`,{json:{"text":simpletex.body}})
+
+  console.log(openaireq.body)
   return NextResponse.json({ success: true })
 }
