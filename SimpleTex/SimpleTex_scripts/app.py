@@ -17,7 +17,7 @@ def get_request(gloop):
     res = requests.post(api_url, files=file, data=data, headers=header) # Use the requests library to upload files
     print(res.status_code)
     print(res.text)
-    return jsonify(res.text)
+    return res.text
     
     
 
@@ -31,7 +31,9 @@ def process_text(question):
     And I hope you can generate 5 more similar questions, 
     questions are separated by a sepatate line. 
     After each question, generate the answer and brief explanation. Explanation should be less than 100 words and in a paragraph!
-    Please return in following format, no empty lines. Thank you very much!
+    Please return in following format, no empty lines. 
+    For formulas, please use latex format.
+    Thank you very much!
     Question: 
     Answer:
     Explanation:
@@ -61,9 +63,9 @@ def process_text(question):
     for item in response_list:
         detail = item.split('\n')
         context.append({
-            "Question": json.dumps(detail[0]),
-            "Answer": json.dumps(detail[1]),
-            "Explanation": json.dumps(detail[2])
+            "Question": detail[0],
+            "Answer": detail[1],
+            "Explanation": detail[2]
         })
 
     return context

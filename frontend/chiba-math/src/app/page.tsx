@@ -4,7 +4,7 @@ import { useState } from "react";
 
 export default function Home() {
   const [file, setFile] = useState<File>();
-
+  const [out, setOut] = useState();
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     console.log('calling req');
     e.preventDefault();
@@ -20,11 +20,16 @@ export default function Home() {
       });
       // handle the error
       if (!res.ok) throw new Error(await res.text());
+      const r = await res.json();
+      setOut(r);
     } catch (e: any) {
       // Handle errors here
       console.error(e);
     }
   };
+
+  const g = out?.body;
+  console.log(g);
 
   return (
     <main>
@@ -41,7 +46,15 @@ export default function Home() {
             <input type="submit" value="Upload" />
           </form>
         </div>
-        <div className="block2">Flex 2</div>
+        <div className="block2">Flex 2
+          {g==undefined?<></>:<>{g.map((a:any)=>{
+          console.log(a);
+          return (<div>
+            <div>{a.Answer}</div>
+            <div>{a.Explanation}</div>
+            <div>{a.Question}</div>
+          </div>)})}</>}
+        </div>
       </div>
     </main>
   );
