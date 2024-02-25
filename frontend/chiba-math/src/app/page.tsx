@@ -1,6 +1,7 @@
 "use client";
 import "./Home.css";
 import { useState } from "react";
+import Image from 'next/image'
 
 export default function Home() {
   const [file, setFile] = useState<File>();
@@ -28,23 +29,53 @@ export default function Home() {
     }
   };
 
-  const g = out?.body;
+  // const g = out?.body;
+  const g = 
+  [{
+    Answer:"Answer: \(-\frac{12}{y^5}\)",
+    Explanation:"Explanation: The derivative is obtained applying the power rule, where the exponent is brought in front and the new exponent is one less. Specifically, for \(f(y) = \frac{3}{y^4}\), rewriting it as \(3y^{-4}\) makes application of the rule straightforward, resulting in \(-12y^{-5}\), which simplifies to \(-\frac{12}{y^5}\).",
+    Question:"Question: \(\frac{3}{y^4}\)",
+  },{    
+    Answer:"Answer: \(-\frac{12}{y^5}\)",
+    Explanation:"Explanation: The derivative is obtained applying the power rule, where the exponent is brought in front and the new exponent is one less. Specifically, for \(f(y) = \frac{3}{y^4}\), rewriting it as \(3y^{-4}\) makes application of the rule straightforward, resulting in \(-12y^{-5}\), which simplifies to \(-\frac{12}{y^5}\).",
+    Question:"Question: \(\frac{3}{y^4}\)",
+  }]
   console.log(g);
 
   return (
     <main>
-      <div className="banner">Chiba Math</div>
+      <div className="banner">
+        <div className = "container">
+          <Image
+            src="/favicon.ico"
+            alt="Picture of the author"
+            width={60}
+            height={60}
+          />
+          <div className="head">
+            ShibaMath
+          </div>
+        </div>
+      </div>
       <div className="grid">
         <div className="block1">
-          Flex 1
-          <form onSubmit={onSubmit}>
-            <input
-              type="file"
-              name="file"
-              onChange={(e) => setFile(e.target.files?.[0])}
-            />
-            <input type="submit" value="Upload" />
-          </form>
+          <div className="block3"> 
+            <div className="instructions">
+              Upload a PNG or JPG of a math problem that you're having trouble with 
+              and ShibaMath will generate sample problems for you to practice with!
+            </div>
+            <form onSubmit={onSubmit}>
+              <div className="block4">
+              <input
+                className="choose-file"
+                type="file"
+                name="file"
+                onChange={(e) => setFile(e.target.files?.[0])}
+              />
+              <input type="submit" value="Upload" className="input-button"/>
+              </div>
+            </form>
+          </div>
         </div>
         <div className="block2">Flex 2
           {g==undefined?<></>:<>{g.map((a:any)=>{

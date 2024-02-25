@@ -17,12 +17,15 @@
 
   .block1{
     width: 50%;
-
     margin:10px;
     margin-top: 15px;
     padding: 20px;
-    height: 85vh;
+    height: 83vh;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers items horizontally within the container */
+    justify-content: flex-end; /* Pushes the button to the bottom of the container */
     background-color: #ebedeb;
   }
 
@@ -31,7 +34,72 @@
     margin:10px;
     margin-top: 15px;
     padding: 20px;
-    height: 85vh;
+    height: 83vh;
     border-radius: 10px;
     background-color: #ebedeb;
+  }
+
+  .block3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    width: 50%;
+    margin: 10px;
+    margin-top: 80px;
+    margin-left: 10px;
+    margin-bottom: 170px;
+    padding: 20px;
+    height: 40vh;
+    width: 75vh;
+    border: 3px solid #000;
+    border-radius: 10px;
+    border-style: dashed;
+    border-color: rgb(58, 58, 58);
+    background-color: #bababac5;
+  }
+  .block4{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .instructions{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 55px;
+    text-align: center;
+  }
+
+  .choose-file{
+    width: 70%;
+  }
+
+  .input-button{
+    background-color: #1AB6F9;
+    color: white;
+    border: 3px solid #1AB6F9;
+    border-radius: 10px;
+    margin-top: 15px;
+    width: 70px;
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  .input-button:hover {
+    display: block; /* or any other desired display value upon hover */
+    background-color: #2980b9;
+  }
+
+  .container {
+    display: flex;
+    /* flex-flow: column wrap; */
+  }
+
+  .head {
+    /*margin: 10px;*/
+    font-size: 40px;
+    margin-left: 10px;
   }
