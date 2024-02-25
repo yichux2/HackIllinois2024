@@ -1,5 +1,7 @@
 "use client";
 import "./Home.css";
+import 'katex/dist/katex.min.css';
+import Latex from 'react-latex-next';
 import { useState } from "react";
 import Image from 'next/image'
 
@@ -32,7 +34,7 @@ export default function Home() {
   // const g = out?.body;
   const g = 
   [{
-    Answer:"Answer: \(-\frac{12}{y^5}\)",
+    Answer:"Answer: \(-\\frac{12}{y^5}\)",
     Explanation:"Explanation: The derivative is obtained applying the power rule, where the exponent is brought in front and the new exponent is one less. Specifically, for \(f(y) = \frac{3}{y^4}\), rewriting it as \(3y^{-4}\) makes application of the rule straightforward, resulting in \(-12y^{-5}\), which simplifies to \(-\frac{12}{y^5}\).",
     Question:"Question: \(\frac{3}{y^4}\)",
   },{    
@@ -81,9 +83,10 @@ export default function Home() {
           {g==undefined?<></>:<>{g.map((a:any)=>{
           console.log(a);
           return (<div>
-            <div>{a.Answer}</div>
-            <div>{a.Explanation}</div>
-            <div>{a.Question}</div>
+            <Latex>{`"$${a.Answer}$`}</Latex>
+            {/* <div> <Latex>{a.Answer}</Latex></div>
+            <div> <Latex>{a.Explanation}</Latex></div>
+            <div> <Latex> {a.Question} </Latex></div> */}
           </div>)})}</>}
         </div>
       </div>
