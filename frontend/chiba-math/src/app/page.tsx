@@ -77,7 +77,7 @@ export default function Home() {
             </form>
           </div>
         </div>
-        <div className="block2">Flex 2
+        <div className="block2">
           {g==undefined?<></>:<>{g.map((a:any)=>{
           console.log(a);
           return (<div>
