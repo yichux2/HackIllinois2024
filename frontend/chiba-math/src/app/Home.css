@@ -1,3 +1,9 @@
+body, html {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+}
+
 .banner{
     background-color: #1AB6F9;
     padding: 20px;  
@@ -13,6 +19,8 @@
 
   .grid{
     display: flex;
+    overflow-y: hidden;
+
   }
 
   .block1{
@@ -37,6 +45,7 @@
     height: 83vh;
     border-radius: 10px;
     background-color: #ebedeb;
+    overflow-y: scroll;
   }
 
   .block3 {
@@ -58,6 +67,7 @@
     border-color: rgb(58, 58, 58);
     background-color: #bababac5;
   }
+
   .block4{
     display: flex;
     flex-direction: column;
@@ -74,6 +84,14 @@
     text-align: center;
   }
 
+  .gif {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 200px;
+  }
+
   .choose-file{
     width: 70%;
   }
@@ -86,6 +104,38 @@
     margin-top: 15px;
     width: 70px;
     transition: background-color 0.3s ease-in-out;
+  }
+
+  .lists-layout {
+    background-color: #bababac5;
+    margin: 20px;
+    padding: 15px;
+    border-color: #bababac5;
+    border-radius: 10px;
+    overflow-y: scroll;
+  }
+
+  .answer-explanation {
+    margin-top: 10px;
+    background-color: rgb(58, 58, 58);
+    border-radius: 10px;
+    padding: 7px;
+    color: rgba(0, 0, 0, 0);
+    transition-timing-function: linear;
+    transition-duration: 200ms;
+    transition-delay: 50ms; 
+    animation-fill-mode: backwards;
+  }
+
+  .answer-explanation:hover {
+    display: block; /* or any other desired display value upon hover */
+    background-color: #bababac5;
+    opacity: 1;
+    color: rgba(0, 0, 0, 1);
+    transition-timing-function: linear;
+    transition-duration: 200ms;
+    transition-delay: 50ms; 
+    animation-fill-mode: backwards;
   }
 
   .input-button:hover {

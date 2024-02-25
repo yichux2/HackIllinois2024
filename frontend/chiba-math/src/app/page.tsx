@@ -8,12 +8,14 @@ import Image from 'next/image'
 export default function Home() {
   const [file, setFile] = useState<File>();
   const [out, setOut] = useState();
+  const [initFlag, setInitFlag] = useState(true);
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     console.log('calling req');
     e.preventDefault();
     if (!file) return;
 
     try {
+      setInitFlag(false);
       const data = new FormData();
       data.set("file", file);
       console.log('sending');
@@ -30,18 +32,29 @@ export default function Home() {
       console.error(e);
     }
   };
-
-  // const g = out?.body;
-  const g = 
-  [{
-    Answer:"Answer: \(-\\frac{12}{y^5}\)",
-    Explanation:"Explanation: The derivative is obtained applying the power rule, where the exponent is brought in front and the new exponent is one less. Specifically, for \(f(y) = \frac{3}{y^4}\), rewriting it as \(3y^{-4}\) makes application of the rule straightforward, resulting in \(-12y^{-5}\), which simplifies to \(-\frac{12}{y^5}\).",
-    Question:"Question: \(\frac{3}{y^4}\)",
-  },{    
-    Answer:"Answer: \(-\frac{12}{y^5}\)",
-    Explanation:"Explanation: The derivative is obtained applying the power rule, where the exponent is brought in front and the new exponent is one less. Specifically, for \(f(y) = \frac{3}{y^4}\), rewriting it as \(3y^{-4}\) makes application of the rule straightforward, resulting in \(-12y^{-5}\), which simplifies to \(-\frac{12}{y^5}\).",
-    Question:"Question: \(\frac{3}{y^4}\)",
-  }]
+  let mini = "Answer: \(-\frac{12}{y^5}\)"
+  mini = mini.replace(/\\([a-zA-Z])/g, "\\\\$1");
+  console.log('mini',mini)
+  const g = out?.body;
+  // let g = 
+  // [{
+  //   Answer:"Answer: $\(-\\frac{12}{y^5}\)$",
+  //   Explanation:"Explanation: The derivative is obtained applying the power rule, where the exponent is brought in front and the new exponent is one less. Specifically, for $\(f(y) = \\frac{3}{y^4}\)$, rewriting it as $\(3y^{-4}\)$ makes application of the rule straightforward, resulting in $\(-12y^{-5}\)$, which simplifies to $\(-\\frac{12}{y^5}\)$.",
+  //   Question:"Question: $\(\\frac{3}{y^4}\)$",
+  // },{    
+  //   Answer:"Answer: $\(-\\frac{12}{y^5}\)$",
+  //   Explanation:"Explanation: The derivative is obtained applying the power rule, where the exponent is brought in front and the new exponent is one less. Specifically, for $\(f(y) = \\frac{3}{y^4}\)$, rewriting it as $\(3y^{-4}\)$ makes application of the rule straightforward, resulting in $\(-12y^{-5}\)$, which simplifies to $\(-\\frac{12}{y^5}\)$.",
+  //   Question:"Question: $\(\\frac{3}{y^4}\)$",
+  // },{    
+  //   Answer:"Answer: $\(-\\frac{12}{y^5}\)$",
+  //   Explanation:"Explanation: The derivative is obtained applying the power rule, where the exponent is brought in front and the new exponent is one less. Specifically, for $\(f(y) = \\frac{3}{y^4}\)$, rewriting it as $\(3y^{-4}\)$ makes application of the rule straightforward, resulting in $\(-12y^{-5}\)$, which simplifies to $\(-\\frac{12}{y^5}\)$.",
+  //   Question:"Question: $\(\\frac{3}{y^4}\)$",
+  // },{    
+  //   Answer:"Answer: $\(-\\frac{12}{y^5}\)$",
+  //   Explanation:"Explanation: The derivative is obtained applying the power rule, where the exponent is brought in front and the new exponent is one less. Specifically, for $\(f(y) = \\frac{3}{y^4}\)$, rewriting it as $\(3y^{-4}\)$ makes application of the rule straightforward, resulting in $\(-12y^{-5}\)$, which simplifies to $\(-\\frac{12}{y^5}\)$.",
+  //   Question:"Question: $\(\\frac{3}{y^4}\)$",
+  // }]
+  // g = undefined;
   console.log(g);
 
   return (
@@ -50,7 +63,7 @@ export default function Home() {
         <div className = "container">
           <Image
             src="/favicon.ico"
-            alt="Picture of the author"
+            alt="shiba inu"
             width={60}
             height={60}
           />
@@ -65,6 +78,7 @@ export default function Home() {
             <div className="instructions">
               Upload a PNG or JPG of a math problem that you're having trouble with 
               and ShibaMath will generate sample problems for you to practice with!
+              Hover over a dark box for an answer and explanation.
             </div>
             <form onSubmit={onSubmit}>
               <div className="block4">
@@ -80,13 +94,24 @@ export default function Home() {
           </div>
         </div>
         <div className="block2">
-          {g==undefined?<></>:<>{g.map((a:any)=>{
+          {!initFlag && g==undefined?<><div className = "gif">
+          <Image
+            src="/loading.gif"
+            alt="shiba inu"
+            width={200}
+            height={200}
+            />Loading...</div></>:<></>}
+          {g==undefined?<>
+          </>
+          :<>{g.map((a:any)=>{
           console.log(a);
-          return (<div>
-            <Latex>{`"$${a.Answer}$`}</Latex>
-            {/* <div> <Latex>{a.Answer}</Latex></div>
-            <div> <Latex>{a.Explanation}</Latex></div>
-            <div> <Latex> {a.Question} </Latex></div> */}
+          return (<div className = "lists-layout">
+            <div><Latex>{`${a.Question}`}</Latex></div>
+            <div className = "answer-explanation">
+              <div><Latex>{`${a.Answer}`}</Latex></div>
+              <div><Latex>{`${a.Explanation}`}</Latex></div>
+            </div>
+
           </div>)})}</>}
         </div>
       </div>
